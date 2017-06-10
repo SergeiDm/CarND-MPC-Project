@@ -84,7 +84,7 @@ Below is the result video of this project for the following hyperparameters (use
 <a href="https://youtu.be/RAJG77IfK-Q" target="_blank"><img src="http://img.youtube.com/vi/RAJG77IfK-Q/0.jpg" 
 alt="IMAGE ALT TEXT HERE" width="400" height="300" border="10" /></a>
 
-The results depend on PC processor and video card, so in case of a good specification higher reference velocity can be used:
+The results depend on PC processor and video card, so in case of a good specification, higher reference velocity can be used:
 - ref_v = 100
 - w_cte_diff_ref = 60
 - w_epsi_diff_ref = 550
