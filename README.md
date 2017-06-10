@@ -55,6 +55,9 @@ Choosing N and dt depends on certain situation, here are some points concerning 
 A polynomial is fitted to waypoints.
 If the student preprocesses waypoints, the vehicle state, and/or actuators prior to the MPC procedure it is described.
 
+Before using the optimizer, given waypoints (the reference trajectory) were transformed from a map coordinate system into car coordinate. Here is:
+https://cdn-enterprise.discourse.org/udacity/uploads/default/original/4X/3/0/f/30f3d149c4365d9c395ed6103ecf993038b3d318.png
+MPC procedure 
 
 
 Model Predictive Control with Latency
