@@ -8,11 +8,11 @@ using namespace std;
 
 // Structure for recording solver results
 struct Result {
-	public:
-		double angle;
-		double throttle;
-		vector<double> px;
-		vector<double> py;
+ public:
+  double angle;
+  double throttle;
+  vector<double> px;
+  vector<double> py;
 };
 
 class MPC {
