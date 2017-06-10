@@ -3,7 +3,7 @@ Implementation of Model Predictive Control to drive the car around the track
 ## Project Description
 In this project a kinematic model is applied to maneuver the vehicle around the track. Using a reference trajectory (for example by a path planning block) and the following kinematic model (source: http://www.udacity.com/):
 
-<img src="https://github.com/SergeiDm/CarND-MPC-Project/blob/master/illustrations/Model.png" width="300" height="250"/>
+<img src="https://github.com/SergeiDm/CarND-MPC-Project/blob/master/illustrations/Model.png" width="200" height="200"/>
 
 the project calculates actuators (steering angle and throttle) for the vehicle.
 
@@ -18,6 +18,20 @@ All dependencies can be found [here](https://github.com/udacity/CarND-MPC-Projec
 OS Windows 10 users may use [Bash on Ubuntu on Windows](https://msdn.microsoft.com/en-us/commandline/wsl/about) for dependencies installation and building program.
 
 ## Project explanation
+The Model
+Student describes their model in detail. This includes the state, actuators and update equations.
+
+Timestep Length and Elapsed Duration (N & dt)
+Student discusses the reasoning behind the chosen N (timestep length) and dt (elapsed duration between timesteps) values. Additionally the student details the previous values tried.
+
+Polynomial Fitting and MPC Preprocessing
+A polynomial is fitted to waypoints.
+If the student preprocesses waypoints, the vehicle state, and/or actuators prior to the MPC procedure it is described.
+
+Model Predictive Control with Latency
+The student implements Model Predictive Control that handles a 100 millisecond latency. Student provides details on how they deal with latency.
+
+
 In this project 2 PID controllers were applied:
 - for steering angle. This PID is directly proprotional:
 
