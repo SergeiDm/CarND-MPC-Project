@@ -1,19 +1,15 @@
 # CarND-MPC-Project
 Implementation of Model Predictive Control to drive the car around the track
 ## Project Description
-In this project you'll implement Model Predictive Control to drive the car around the track. This time however you're not given the cross track error, you'll have to calculate that yourself! Additionally, there's a 100 millisecond latency between actuations commands on top of the connection latency.
-Kinematic models are simplifications of dynamic models that ignore tire forces, gravity, and mass.
+In this project a kinematic model is applied to maneuver the vehicle around the track. Using a reference trajectory (for example by a path planning block) and the following kinematic model (source: http://www.udacity.com/):
 
-This simplification reduces the accuracy of the models, but it also makes them more tractable.
+<img src="https://github.com/SergeiDm/CarND-MPC-Project/blob/master/illustrations/Model.png" width="400" height="300"/>
 
-At low and moderate speeds, kinematic models often approximate the actual vehicle dynamics.
-
-In this project PID (P-proportional, I-integral, D-differential) controller is applied to maneuver the vehicle around the track.
-PID controller based on the cross track error (CTE) which is provided by [a car simulator](https://github.com/udacity/CarND-PID-Control-Project/releases).
+the project calculates actuators (steering angle and throttle) for the vehicle.
 
 ## Project files
 The project includes the following folder/files:
-- src - the folder with c++ files with PID controller implementation.
+- [src](https://github.com/SergeiDm/CarND-MPC-Project/tree/master/src) - the folder with c++ files with model predictive control (MPC) implementation.
 - CMakeLists.txt - the file for building program.
 - illustrations - the folder with pictures for README.md.
 
@@ -41,9 +37,7 @@ It means the more CTE, the more steering angle.
 
 - for speed (velocity). The PID is inversely proportional absolute values of the same things mentioned in previous PID. So, the more CTE, the less velocity. This is because a big value of CTE means increasing steering angle, so for staying on the track the velocity should be decreased.
 
-Here is how PID components (for steering angle) affect the trajectory (source: http://www.udacity.com/):
 
-<img src="https://github.com/SergeiDm/CarND-PID-Controller/blob/master/illustrations/PID.png" width="400" height="300"/>
 
 P component creates periodic fluctuations, D component decreases them. At the same time I component is used for overcoming biases (for example a steering wheel has inappropriate adjustment).
 
