@@ -1,7 +1,7 @@
 # CarND-MPC-Project
 Implementation of Model Predictive Control to drive the car around the track
 ## Project Description
-In this project a kinematic model is applied to maneuver the vehicle around the track. Using a reference trajectory (given for example by a path planning block) and a kinematic model the project calculates actuators (steering angle and throttle) for the vehicle.
+In this project a kinematic model is applied to maneuver the vehicle around the track. Using a reference trajectory (given for example by a path planning block) and the kinematic model the project calculates actuators (steering angle and throttle) for the vehicle.
 
 ## Project files
 The project includes the following folder/files:
@@ -30,9 +30,9 @@ The model, used in this project, can be described with the following parts:
   
  - update equations (source: http://www.udacity.com/): 
 
-<img src="https://github.com/SergeiDm/CarND-MPC-Project/blob/master/illustrations/Model.png" width="200" height="200"/>
+<img src="https://github.com/SergeiDm/CarND-MPC-Project/blob/master/illustrations/Model.png" width="150" height="100"/>
 
-The model defines the next position of the vehicle, but the task is to adjust the actuators in order to minimize the difference between the prediction and the given reference trajectory. For minimizing this a cost function is used, which is a sum the elements:
+The task by using the model is to adjust the actuators in order to minimize the difference between the prediction and the given reference trajectory. For minimizing this a cost function is used, which is a sum of the elements:
 - square of the difference between the cross track error (CTE) and its reference value
 - square of the difference between the orientation psi and its reference value
 - square of the difference between the velocity and its reference value
@@ -52,32 +52,22 @@ Choosing N and dt depends on certain situation, here are some points concerning 
 - Decreasing N may decrease accuracy.
 
 ### Polynomial Fitting and MPC Preprocessing
-Before using the optimizer, given waypoints (the reference trajectory) were transformed from a map coordinate system into the vehicle's coordinate. [Here](https://cdn-enterprise.discourse.org/udacity/uploads/default/original/4X/3/0/f/30f3d149c4365d9c395ed6103ecf993038b3d318.png) is picture, which explains coordinate transformation.
+Before using the optimizer, given waypoints (the reference trajectory) were transformed from a map's coordinate system into the vehicle's coordinate. [Here](https://cdn-enterprise.discourse.org/udacity/uploads/default/original/4X/3/0/f/30f3d149c4365d9c395ed6103ecf993038b3d318.png) is picture, which explains coordinate transformation.
 For calculating CTE, a 3rd order polynomial was fitted to waypoints (x, y) by using Eigen fucntions.
 
 ### Model Predictive Control with Latency
-The student implements Model Predictive Control that handles a 100 millisecond latency. Student provides details on how they deal with latency.
-
-
-In this project 2 PID controllers were applied:
-- for steering angle. This PID is directly proprotional:
-
-  - CTE
-  - CTE change rate
-  - Sum (integral) of CTE over time
-
-It means the more CTE, the more steering angle.
-
-- for speed (velocity). The PID is inversely proportional absolute values of the same things mentioned in previous PID. So, the more CTE, the less velocity. This is because a big value of CTE means increasing steering angle, so for staying on the track the velocity should be decreased.
-
-P component creates periodic fluctuations, D component decreases them. At the same time I component is used for overcoming biases (for example a steering wheel has inappropriate adjustment).
-
-In this project, manual series tuning was used for finding appropriate hyperparameters for PID components. Firstly for P component, after   testing that steering angle values were anough for keeping the vehicle on the track, hyperparameter for D was tuned in order to decrease periodic fluctuations. Finally, hyperparameter for I component was chosen according to making better staying the vehicle on the track. The final hyperparameters values are 0.06, 0.05, 0.06.
-
-Hyperparameters for PID controller for speed were chosen according to the results how fast the vehicle can move on the track.
-The final values are 0.4, 0, 0.1.
+Because an actuation command won't execute instantly, the model includes latency (0.1 s.) - a delay as the command propagates through the system. The latency was applied as an addition to dt, so instead of having prediction state values after dt, the model has the same state's values after time = dt+latency.
 
 ## Project result
+Here are summary of applied model:
+- Waypoints transformation into the vehicle's coordinate system
+- 3rd order polynomial fitting to waypoints (x, y) for calculating CTE
+- Choosing N and dt for calculating next vehicle's state
+- Choosing hyperparameters for cost function
+- Applying equations with latency and optimizer to define actuators
+- Sending actuators command to the vehicle and defining the next vehicle's state
+- Repeating given steps for calculating the next actuators command.
+ 
 Below is the result video of this project for the following hyperparameters (used in [MPC.cpp](https://github.com/SergeiDm/CarND-MPC-Project/blob/master/src/MPC.cpp)):
 - ref_cte = 0
 - ref_epsi = 0
