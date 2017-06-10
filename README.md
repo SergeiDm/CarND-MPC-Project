@@ -3,7 +3,7 @@ Implementation of Model Predictive Control to drive the car around the track
 ## Project Description
 In this project a kinematic model is applied to maneuver the vehicle around the track. Using a reference trajectory (for example by a path planning block) and the following kinematic model (source: http://www.udacity.com/):
 
-<img src="https://github.com/SergeiDm/CarND-MPC-Project/blob/master/illustrations/Model.png" width="400" height="300"/>
+<img src="https://github.com/SergeiDm/CarND-MPC-Project/blob/master/illustrations/Model.png" width="300" height="250"/>
 
 the project calculates actuators (steering angle and throttle) for the vehicle.
 
@@ -37,7 +37,23 @@ Hyperparameters for PID controller for speed were chosen according to the result
 The final values are 0.4, 0, 0.1.
 
 ## Project result
-Here is the result video of this project:
+Below is the result video of this project for the following hyperparameters (used in [MPC.cpp](https://github.com/SergeiDm/CarND-MPC-Project/blob/master/src/MPC.cpp)):
+- ref_cte = 0
+- ref_epsi = 0
+- ref_v = 85
+- w_cte_diff_ref = 35
+- w_epsi_diff_ref = 500
+- w_v_diff_ref = 1
+- w_delta = 0
+- w_acc = 0
+- w_cte_diff_prev = 500
+- w_delta_diff_prev = 10
+- w_acc_diff_prev = 0.5
 
 <a href="https://youtu.be/RAJG77IfK-Q" target="_blank"><img src="http://img.youtube.com/vi/RAJG77IfK-Q/0.jpg" 
 alt="IMAGE ALT TEXT HERE" width="400" height="300" border="10" /></a>
+
+The results depend on PC processor and video card, so in case of a good specification higher reference velocity can be used:
+- ref_v = 100
+- w_cte_diff_ref = 60
+- w_epsi_diff_ref = 550
