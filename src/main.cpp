@@ -103,8 +103,8 @@ int main() {
           }
 
           // Calculate cte
-					Eigen::VectorXd vect_x = Eigen::VectorXd::Map(ptsx.data(), ptsx.size());
-					Eigen::VectorXd vect_y = Eigen::VectorXd::Map(ptsy.data(), ptsy.size());
+	  Eigen::VectorXd vect_x = Eigen::VectorXd::Map(ptsx.data(), ptsx.size());
+	  Eigen::VectorXd vect_y = Eigen::VectorXd::Map(ptsy.data(), ptsy.size());
           
           // Calculate polynomial coefficients
           auto coeffs = polyfit(vect_x, vect_y, 3);
