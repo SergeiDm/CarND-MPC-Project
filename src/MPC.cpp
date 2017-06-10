@@ -133,7 +133,6 @@ class FG_eval {
 MPC::MPC() {}
 MPC::~MPC() {}
 
-//vector<double> MPC::Solve(Eigen::VectorXd state, Eigen::VectorXd coeffs) {
 Result MPC::Solve(Eigen::VectorXd state, Eigen::VectorXd coeffs) {
   bool ok = true;
   size_t i;
