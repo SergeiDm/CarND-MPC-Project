@@ -30,7 +30,7 @@ The model, used in this project, can be described with the following parts:
   
  - update equations (source: http://www.udacity.com/): 
 
-<img src="https://github.com/SergeiDm/CarND-MPC-Project/blob/master/illustrations/Model.png" width="150" height="100"/>
+<img src="https://github.com/SergeiDm/CarND-MPC-Project/blob/master/illustrations/Model.png" width="180" height="120"/>
 
 The task by using the model is to adjust the actuators in order to minimize the difference between the prediction and the given reference trajectory. For minimizing this a cost function is used, which is a sum of the elements:
 - square of the difference between the cross track error (CTE) and its reference value
