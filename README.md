@@ -15,7 +15,6 @@ OS Windows 10 users may use [Bash on Ubuntu on Windows](https://msdn.microsoft.c
 
 ## Project explanation
 ### The Model
-Student describes their model in detail. This includes the state, actuators and update equations.
 The model, used in this project, can be described with the following parts:
 - the state of a vehicle:
 
@@ -34,15 +33,29 @@ The model, used in this project, can be described with the following parts:
 <img src="https://github.com/SergeiDm/CarND-MPC-Project/blob/master/illustrations/Model.png" width="200" height="200"/>
 
 The model defines the next position of the vehicle, but the task is to adjust the actuators in order to minimize the difference between the prediction and the given reference trajectory. For minimizing this a cost function is used, which is a sum the elements:
-- 
+- square of the difference between the cross track error (CTE) and its reference value
+- square of the difference between the orientation psi and its reference value
+- square of the difference between the velocity and its reference value
+- square of velocity
+- square of steering angle
+- square of the difference between the next CTE and the current one
+- square of the difference between the next velocity state and the current one
+- square of the difference between the next steering angle state and the current one
 
+### Timestep Length and Elapsed Duration
+For prediction of the next state of the vehicle hyperparameter T (time horizon) should be defined as a multiplication of N (number of timesteps) and elapsed duration (dt). T should be small enough (not more than a few seconds), because the environment of the vehicle changes critically fast.
 
-Timestep Length and Elapsed Duration (N & dt)
-Student discusses the reasoning behind the chosen N (timestep length) and dt (elapsed duration between timesteps) values. Additionally the student details the previous values tried.
+In this project, N=10, dt=0.05, so T=0.5 s. N defines the number of variables, which are used by an optimizer ([Ipopt](https://projects.coin-or.org/Ipopt) and [CppAD](https://www.coin-or.org/CppAD/) are used for non-linear optimization). 
+Choosing N and dt depends on certain situation, here are some points concerning choosing N and dt:
+- Increasing N and/or decreasing dt leads to growing the computational cost.
+- Increasing dt decreases accuracy of the prediction and this leads to trajectory which seems like periodic function.
+- Decreasing N may decrease accuracy.
 
-Polynomial Fitting and MPC Preprocessing
+### Polynomial Fitting and MPC Preprocessing
 A polynomial is fitted to waypoints.
 If the student preprocesses waypoints, the vehicle state, and/or actuators prior to the MPC procedure it is described.
+
+
 
 Model Predictive Control with Latency
 The student implements Model Predictive Control that handles a 100 millisecond latency. Student provides details on how they deal with latency.
