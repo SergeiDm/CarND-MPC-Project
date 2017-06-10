@@ -1,11 +1,7 @@
 # CarND-MPC-Project
 Implementation of Model Predictive Control to drive the car around the track
 ## Project Description
-In this project a kinematic model is applied to maneuver the vehicle around the track. Using a reference trajectory (for example by a path planning block) and the following kinematic model (source: http://www.udacity.com/):
-
-<img src="https://github.com/SergeiDm/CarND-MPC-Project/blob/master/illustrations/Model.png" width="200" height="200"/>
-
-the project calculates actuators (steering angle and throttle) for the vehicle.
+In this project a kinematic model is applied to maneuver the vehicle around the track. Using a reference trajectory (given for example by a path planning block) and a kinematic model the project calculates actuators (steering angle and throttle) for the vehicle.
 
 ## Project files
 The project includes the following folder/files:
@@ -18,8 +14,28 @@ All dependencies can be found [here](https://github.com/udacity/CarND-MPC-Projec
 OS Windows 10 users may use [Bash on Ubuntu on Windows](https://msdn.microsoft.com/en-us/commandline/wsl/about) for dependencies installation and building program.
 
 ## Project explanation
-The Model
+### The Model
 Student describes their model in detail. This includes the state, actuators and update equations.
+The model, used in this project, can be described with the following parts:
+- the state of a vehicle:
+
+  - position x
+  - position y
+  - orientation psi
+  - velocity v
+
+- actuators:
+
+  - steering angle delta - [-25, 25] degrees
+  - acceleration a - [-1, 1] throttle/brake
+  
+ - update equations (source: http://www.udacity.com/): 
+
+<img src="https://github.com/SergeiDm/CarND-MPC-Project/blob/master/illustrations/Model.png" width="200" height="200"/>
+
+The model defines the next position of the vehicle, but the task is to adjust the actuators in order to minimize the difference between the prediction and the given reference trajectory. For minimizing this a cost function is used, which is a sum the elements:
+- 
+
 
 Timestep Length and Elapsed Duration (N & dt)
 Student discusses the reasoning behind the chosen N (timestep length) and dt (elapsed duration between timesteps) values. Additionally the student details the previous values tried.
